@@ -36,7 +36,7 @@ Dans Claude Code (terminal ou IDE), tapez :
 /initializing:SKILL
 ```
 
-Claude vous guidera pas à pas (12 étapes) pour saisir :
+Claude vous guidera **une question à la fois** (13 étapes) pour saisir :
 - Profil investisseur : âge, risque, horizon, TMI, dépenses mensuelles, objectif FIRE
 - Allocation cible par classe d'actifs
 - Liquidités (Livret A, LDDS, LEP, compte courant)
@@ -46,7 +46,9 @@ Claude vous guidera pas à pas (12 étapes) pour saisir :
 - Or physique (pièces et lingots, prix d'achat moyen)
 - Private Equity (FCPI, FIP, club deals)
 - Crypto (BTC, ETH, altcoins, DeFi/staking, prix de revient)
+- BSPCE (si salarié en startup : vesting, prix d'exercice, fiscalité)
 - Immobilier (résidence principale avec indivision, locatif)
+- Régime matrimonial (si marié ou pacsé)
 
 ### 4. Lancer votre premier audit
 
@@ -60,9 +62,9 @@ Claude vous guidera pas à pas (12 étapes) pour saisir :
 
 | Commande                | Description |
 |-------------------------|-------------|
-| `/initializing:SKILL`   | Onboarding complet — 12 étapes, toutes les classes d'actifs françaises |
+| `/initializing:SKILL`   | Onboarding interactif — 13 étapes, une question à la fois, toutes les classes d'actifs françaises |
 | `/auditing:SKILL`       | Audit expert : allocation, règle 100−âge, règle des 4%, cash par profil, fiscalité |
-| `/updating:SKILL`       | Mise à jour d'une valeur précise par menu numéroté (31 champs) |
+| `/updating:SKILL`       | Mise à jour d'une valeur précise par menu numéroté (34 champs, dont BSPCE) |
 | `/rebalancing:SKILL`    | Allocation optimale du DCA mensuel en euros par classe DCA-compatible |
 | `/snapshotting:SKILL`   | Snapshot mensuel manuel → `data/history/YYYY-MM.json` |
 | `/taxing:SKILL`         | Guide fiscal personnalisé par formulaire (2042, 2044, 2086, 3916-bis, 2092) |
@@ -157,6 +159,74 @@ Le skill commence par vous poser des questions sur vos transactions de l'année 
 | **Crypto** | PFU 30%, échanges crypto/crypto non imposables, staking = BNC, 3916-bis |
 | **Règle 100−âge** | Exposition actions recommandée = 100 − âge |
 | **Règle des 4%** | SWR 3,5% (Europe) et 4% (Trinity Study), projection FIRE |
+
+---
+
+## 🌍 Utiliser les skills depuis n'importe où
+
+Par défaut, les skills `.claude/commands/` ne sont disponibles que lorsque Claude Code est lancé **depuis le répertoire `cgp-skills/`**. Trois options pour les rendre accessibles depuis n'importe où :
+
+---
+
+### Option A — Symlinks globaux *(recommandée)*
+
+Crée des liens symboliques vers le répertoire global `~/.claude/commands/` :
+
+```bash
+mkdir -p ~/.claude/commands
+for skill in auditing initializing updating rebalancing snapshotting taxing exporting; do
+  ln -s /chemin/vers/cgp-skills/.claude/commands/$skill ~/.claude/commands/$skill
+done
+```
+
+Les 7 skills (`/auditing:SKILL`, `/taxing:SKILL`, etc.) deviennent alors disponibles dans **toute session Claude Code**, quel que soit le répertoire courant.
+
+> **Limitation :** `CLAUDE.md` (formules de calcul, règles fiscales, structure JSON) ne se charge pas automatiquement hors du répertoire projet. Les skills restent utilisables mais sans le contexte complet du CGP.
+>
+> **Contournement :** ajouter cette ligne dans `~/.claude/CLAUDE.md` pour charger le contexte globalement :
+> ```
+> @/chemin/vers/cgp-skills/CLAUDE.md
+> ```
+
+> **Nota :** `data/patrimoine.json` étant un chemin relatif, les skills chercheront ce fichier dans le **répertoire courant**. Lancer Claude Code depuis `cgp-skills/` reste la façon la plus simple de garantir le bon fonctionnement.
+
+---
+
+### Option B — Alias shell
+
+Ajouter dans `~/.zshrc` ou `~/.bashrc` :
+
+```bash
+alias cgp='cd /chemin/vers/cgp-skills && claude'
+```
+
+```bash
+source ~/.zshrc   # ou ~/.bashrc
+cgp               # Lance Claude Code dans cgp-skills — tout fonctionne
+```
+
+Simple, zéro configuration supplémentaire, `CLAUDE.md` et `data/` toujours disponibles.
+
+---
+
+### Option C — Setup complet avec chemins absolus
+
+Pour une disponibilité totale sans contrainte de répertoire :
+
+1. Symlinks globaux (cf. Option A)
+2. Import global de `CLAUDE.md` dans `~/.claude/CLAUDE.md` :
+   ```
+   @/chemin/vers/cgp-skills/CLAUDE.md
+   ```
+3. Modifier chaque `SKILL.md` pour utiliser le chemin absolu de `data/patrimoine.json` :
+   ```
+   # Remplacer dans chaque SKILL.md :
+   data/patrimoine.json
+   # Par :
+   /chemin/vers/cgp-skills/data/patrimoine.json
+   ```
+
+> ⚠️ Les modifications de chemins en Option C sont locales (ne pas commiter ces chemins absolus dans le repo partagé).
 
 ---
 
