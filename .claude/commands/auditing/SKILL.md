@@ -352,6 +352,55 @@ Note : la règle des 4% suppose un portefeuille 60% actions / 40% obligations su
 
 ---
 
+### 5bis. Simulateur d'intérêts composés
+
+Applique la formule des intérêts composés avec versements mensuels réguliers (DCA) :
+
+```
+V(n) = C × (1 + r/12)^(12n)  +  D × 12 × [(1 + r/12)^(12n) − 1] / r
+
+  C = patrimoine net actuel
+  D = dca_mensuel_cible
+  r = taux de rendement annuel (selon profil)
+  n = nombre d'années
+```
+
+Utilise trois scénarios de rendement calibrés sur le profil de l'utilisateur :
+
+| Profil     | Pessimiste | Neutre | Optimiste |
+|------------|-----------|--------|-----------|
+| Prudent    | 2%        | 3,5%   | 5%        |
+| Équilibré  | 3%        | 5%     | 7%        |
+| Dynamique  | 4%        | 7%     | 9%        |
+| Offensif   | 5%        | 9%     | 12%       |
+
+Calcule pour les horizons 5 / 10 / 15 / 20 ans + horizon_annees du profil (si différent) :
+
+```
+📐 SIMULATEUR D'INTÉRÊTS COMPOSÉS
+  Capital de départ : XXX XXX €  (patrimoine net)
+  DCA mensuel       :   X XXX €/mois
+
+  Horizon │ Pessimiste (X%) │   Neutre (X%)   │ Optimiste (X%)
+  ────────────────────────────────────────────────────────────
+   5 ans  │    XXX XXX €    │    XXX XXX €    │    XXX XXX €
+  10 ans  │    XXX XXX €    │    XXX XXX €    │    XXX XXX €
+  15 ans  │    XXX XXX €    │    XXX XXX €    │    XXX XXX €
+  20 ans  │    XXX XXX €    │    XXX XXX €    │    XXX XXX €
+  [H ans] │    XXX XXX €    │    XXX XXX €    │    XXX XXX €  ← votre horizon
+  ────────────────────────────────────────────────────────────
+
+  Part capital initial vs intérêts (scénario neutre, horizon [H] ans) :
+  ├─ Capital investi (C + D × 12 × H) :  XXX XXX €  (XX%)
+  └─ Intérêts composés générés         :  XXX XXX €  (XX%)  ✨
+```
+
+Ajoute en commentaire l'**effet de levier temporel** :
+- Si doubler le DCA réduirait l'horizon FIRE de plus de 3 ans → le signaler
+- Comparer scénario pessimiste vs optimiste à l'horizon cible (écart en €) pour sensibiliser à l'importance du rendement choisi
+
+---
+
 ### 6. Illiquidité du patrimoine
 
 Calcule et affiche la part d'actifs illiquides :
