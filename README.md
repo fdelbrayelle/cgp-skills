@@ -21,14 +21,7 @@ git clone <votre-repo> cgp-skills
 cd cgp-skills
 ```
 
-### 2. Créer votre fichier de données
-
-```bash
-cp data/patrimoine.json.example data/patrimoine.json
-# ⚠️ Ce fichier est dans .gitignore — vos données ne seront JAMAIS commitées
-```
-
-### 3. Lancer l'onboarding
+### 2. Lancer l'onboarding
 
 Dans Claude Code (terminal ou IDE), tapez :
 
@@ -50,7 +43,7 @@ Claude vous guidera **une question à la fois** (13 étapes) pour saisir :
 - Immobilier (résidence principale avec indivision, locatif)
 - Régime matrimonial (si marié ou pacsé)
 
-### 4. Lancer votre premier audit
+### 3. Lancer votre premier audit
 
 ```
 /auditing:SKILL
