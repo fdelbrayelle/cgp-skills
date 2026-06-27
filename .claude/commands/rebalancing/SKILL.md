@@ -10,7 +10,7 @@ Lis `data/patrimoine.json` (outil Read), calcule les drifts et détermine commen
 2. **Drift** = `allocation_actuelle% − allocation_cible%`
 3. **Classes DCA-compatibles uniquement** (rappel CLAUDE.md) :
    - ✅ Éligibles DCA : `actions_pea`, `per`, `assurance_vie`, `scpi` (PP en direct), `crypto`, `livrets_liquidites`
-   - ❌ Non-DCA : `immobilier` (pas achetable mensuellement), `scpi nue_propriete` (achat ponctuel), `or_physique` (achat ponctuel), `private_equity` (souscription annuelle)
+   - ❌ Non-DCA : `immobilier` (pas achetable mensuellement), `scpi nue_propriete` (achat ponctuel), `or_physique` (achat ponctuel), `private_equity` (souscription annuelle), `bspce` (illiquides, pas de flux mensuel possible)
 4. **Allocation DCA** = proportionnelle aux drifts négatifs des classes éligibles uniquement
 
 ---

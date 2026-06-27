@@ -32,6 +32,7 @@ Avant de générer le guide, demande à l'utilisateur :
    - SCPI NP : récupération de pleine propriété (fin d'usufruit) ?
    - Private Equity FCPI/FIP : cession ou liquidation de fonds ?
    - Immobilier locatif : vente ?
+   - **BSPCE** : cession d'actions issues de l'exercice de BSPCE ?
 3. **Montants versés sur le PER en [N-1]** (pour les déductions)
 
 ---
@@ -265,7 +266,53 @@ Pour chaque exchange étranger détecté dans les données :
 
 ---
 
-## Section 6 — PRIVATE EQUITY (si cession/liquidation en [N-1])
+## Section 6 — BSPCE (si cession d'actions issues de BSPCE en [N-1])
+
+```
+📋 BSPCE — BONS DE SOUSCRIPTION DE PARTS DE CRÉATEUR D'ENTREPRISE
+
+  ⚠️ À remplir uniquement si vous avez cédé des actions issues de l'exercice
+     de vos BSPCE en [N-1]. L'exercice seul (sans cession) n'est pas imposable.
+```
+
+Si l'utilisateur a eu des cessions d'actions BSPCE :
+
+```
+  CALCUL DU GAIN NET :
+
+  Gain BSPCE = Prix de cession − Prix d'exercice
+
+  TAUX D'IMPOSITION — selon l'âge de l'entreprise à la date d'ATTRIBUTION :
+
+  ┌─────────────────────────────────────────────────────────────────┐
+  │  [Entreprise < 3 ans à l'attribution]                           │
+  │  → PFU 30% : 12,8% IR + 17,2% PS                               │
+  │  Gain imposable : X XXX €  |  Impôt estimé : X XXX €           │
+  └─────────────────────────────────────────────────────────────────┘
+
+  ┌─────────────────────────────────────────────────────────────────┐
+  │  [Entreprise ≥ 3 ans à l'attribution] ← cas le plus courant    │
+  │  → 17,2% PS UNIQUEMENT — exonéré d'IR ✅                        │
+  │  Gain imposable : X XXX €  |  Impôt estimé : X XXX € (PS seul) │
+  └─────────────────────────────────────────────────────────────────┘
+
+  SI GAIN DE CESSION SUPPLÉMENTAIRE (prix vente > valeur au jour d'exercice) :
+  → Ce surplus est traité comme une plus-value mobilière → PFU 30%
+  → Cases 3VG du formulaire 2042
+
+  DÉCLARATION :
+  → Le gain BSPCE figure sur l'IFU ou l'attestation fiscale de l'entreprise
+  → En l'absence d'IFU, calcul manuel : (prix cession − prix exercice) × nombre d'actions
+  → Case 1TZ (gain exonéré d'IR, PS dues) ou cases ordinaires selon situation
+  → Vérifier avec un expert-comptable pour les cas complexes (M&A, liquidité partielle)
+
+  ✅ Si aucune cession : plus-values BSPCE 100% latentes → aucune imposition,
+     aucune déclaration à effectuer.
+```
+
+---
+
+## Section 7 — PRIVATE EQUITY (si cession/liquidation en [N-1])
 
 ```
 📋 PRIVATE EQUITY — FCPI/FIP
@@ -286,7 +333,7 @@ Pour chaque exchange étranger détecté dans les données :
 
 ---
 
-## Section 7 — CHECKLIST FINALE
+## Section 8 — CHECKLIST FINALE
 
 ```
 ✅ RÉCAPITULATIF — CE QUE VOUS AVEZ À FAIRE
@@ -301,6 +348,7 @@ DOCUMENTS À RÉCUPÉRER (janvier-mars [N]) :
 
 FORMULAIRES À REMPLIR :
   □ 2042    — PER (case 6DD : X XXX €)
+  □ 2042    — BSPCE [si cession d'actions en [N-1]] (case 1TZ ou 3VG selon situation)
   □ 2044    — SCPI en direct [si revenus > 0] (revenus bruts : X XXX €)
   □ 2086    — Crypto [si cessions vers fiat en [N-1]]
   □ 3916-bis— Coinbase, Kraken [obligation annuelle]

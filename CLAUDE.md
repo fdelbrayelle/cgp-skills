@@ -18,6 +18,9 @@ profil_investisseur
   prenom_nom, age, profil_risque, horizon_annees
   situation_professionnelle (salarié | TNS | fonctionnaire | retraité)
   situation_familiale (célibataire | pacsé | marié | divorcé)
+  regime_matrimonial (communaute_reduite_aux_acquets | separation_de_biens |
+                      participation_aux_acquets | communaute_universelle |
+                      pacs_indivision | pacs_separation | null si célibataire/divorcé)
   tranche_imposition_pourcent (11 | 30 | 41 | 45)
   dca_mensuel_cible, depenses_mensuelles
   objectif_revenu_mensuel_eur, pension_retraite_estimee_eur
@@ -83,6 +86,13 @@ situation_actuelle
     defi_staking[] : protocole, valeur_eur, rendement_annuel_pourcent
     valeur_totale_eur
 
+  bspce[] (null ou [] si aucun — uniquement pour les salariés de startups éligibles)
+    entreprise, date_attribution, nombre_bspce, prix_exercice_eur
+    vesting_cliff_mois, date_fin_vesting
+    exerces (bool), nombre_exerces
+    valeur_action_estimee_eur, plus_value_latente_estimee_eur
+    age_entreprise_ans_a_attribution  ← clé fiscale : < 3 ans → PFU 30%, ≥ 3 ans → 17,2% PS seulement
+
   immobilier
     residence_principale
       valeur_brute, quote_part_pourcent, capital_restant_du, mensualite_credit
@@ -140,6 +150,12 @@ Or physique :
 Private equity :
   - Valorisé à la dernière VL (valeur_liquidative_estimee) communiquée
   - Illiquidité totale pendant la période de blocage
+
+BSPCE :
+  - Valorisés à (valeur_action_estimee_eur − prix_exercice_eur) × nombre_bspce non exercés
+  - Plus-value purement latente et conditionnelle à un événement de liquidité (IPO, M&A)
+  - Ne génèrent aucun revenu ; non DCA-compatibles
+  - Si non encore vestés → valeur économique nulle dans les calculs patrimoniaux
 ```
 
 ### Agrégats patrimoniaux
@@ -245,6 +261,25 @@ Ces fourchettes servent à **évaluer si les cibles de l'utilisateur sont cohér
 **Private Equity (FCPI/FIP)** : réduction IR 18–25% à la souscription. Exonération d'IR sur les plus-values après 5 ans de détention (prélèvements sociaux 17,2% restent dus). Bloqué minimum 5 ans.
 
 **Or + Crypto + PE : déclaration fiscale** — rappeler systématiquement l'obligation de déclarer comptes crypto étrangers (formulaire 3916-bis) et les cessions imposables.
+
+**BSPCE (Bons de Souscription de Parts de Créateur d'Entreprise)** :
+- Réservés aux bénéficiaires de startups françaises éligibles (< 15 ans, PME innovante, CGU)
+- Gain net = prix de cession − prix d'exercice (traité comme gain salarial mais à taux spécifique)
+- Taux selon l'âge de l'entreprise **à la date d'attribution** :
+  - Entreprise < 3 ans → PFU 30% (12,8% IR + 17,2% PS)
+  - Entreprise ≥ 3 ans → 17,2% PS uniquement (exonération totale d'IR sur le gain d'exercice)
+- Si les actions sont revendues à un prix supérieur à leur valeur au jour d'exercice → gain de cession supplémentaire imposé au PFU 30%
+- Imposition déclenchée à la **cession** des actions (pas à l'exercice si les actions sont conservées)
+- Actifs totalement illiquides jusqu'à un événement de liquidité (IPO, acquisition, marché secondaire)
+
+**Régime matrimonial — impact patrimonial** :
+- `communaute_reduite_aux_acquets` (défaut légal) : biens acquis pendant le mariage = communs (50/50) sauf héritage/donation
+- `separation_de_biens` : chaque époux reste propriétaire de ses biens ; quote-part à préciser pour chaque actif commun
+- `participation_aux_acquets` : séparation pendant le mariage, partage des acquêts à la dissolution
+- `communaute_universelle` : tous les biens sont communs (y compris antérieurs au mariage)
+- `pacs_indivision` (défaut PACS) : biens acquis ensemble = indivision 50/50
+- `pacs_separation` : chaque partenaire propriétaire de ses biens
+→ Impacte directement la `quote_part_pourcent` de la résidence principale et la stratégie successorale (AV, transmission).
 
 ---
 

@@ -6,6 +6,7 @@
     "horizon_annees": 20,
     "situation_professionnelle": "salarié",
     "situation_familiale": "célibataire",
+    "regime_matrimonial": null,
     "tranche_imposition_pourcent": 30,
     "dca_mensuel_cible": 1500,
     "depenses_mensuelles": 2800,
@@ -243,6 +244,22 @@
         "note": "Acquisition en indivision 50/50 avec concubin(e)"
       },
       "locatif": []
-    }
+    },
+    "bspce": [
+      {
+        "entreprise": "MaStartup SAS",
+        "date_attribution": "2022-03-15",
+        "nombre_bspce": 1000,
+        "prix_exercice_eur": 2.50,
+        "vesting_cliff_mois": 12,
+        "date_fin_vesting": "2026-03-15",
+        "exerces": false,
+        "nombre_exerces": 0,
+        "valeur_action_estimee_eur": 8.00,
+        "plus_value_latente_estimee_eur": 5500,
+        "age_entreprise_ans_a_attribution": 5,
+        "note_fiscale": "Entreprise ≥ 3 ans à l'attribution → 17,2% PS uniquement sur le gain (exonération IR). Gain latent non imposable tant que les actions ne sont pas cédées."
+      }
+    ]
   }
 }

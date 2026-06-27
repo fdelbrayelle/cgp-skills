@@ -69,6 +69,11 @@ IMMOBILIER
   [30] Quote-part résidence (%)        → XX%
   [31] Capital restant dû              → XXX XXX €
 
+BSPCE *(si présents)*
+  [32] Valeur action estimée           → X,XX €/action (recalcule la PV latente)
+  [33] Ajouter une tranche BSPCE       → (interactif)
+  [34] Marquer des BSPCE comme exercés → (sélection par entreprise)
+
   [0]  Ajouter un champ non listé
 
 Tapez le numéro du champ à mettre à jour :
@@ -84,6 +89,11 @@ Tapez le numéro du champ à mettre à jour :
 6. Affiche l'impact sur patrimoine brut/net si significatif
 
 ## Cas spéciaux
+
+**Mise à jour valeur action BSPCE [32]** :
+- Affiche chaque tranche avec l'entreprise, le prix d'exercice et la valeur action actuelle
+- Demande le nouveau prix de l'action (dernière valorisation connue)
+- Recalcule automatiquement `plus_value_latente_estimee_eur` = (valeur_action − prix_exercice) × nombre_bspce
 
 **Mise à jour du prix spot de l'or [22]** :
 - Affiche chaque type de pièce/lingot avec leur quantité

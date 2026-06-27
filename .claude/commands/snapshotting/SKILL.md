@@ -50,8 +50,10 @@ Construis le JSON suivant et sauvegarde-le dans `data/history/YYYY-MM.json` (ex 
   "pv_latentes": {
     "pea": XXXXX,
     "crypto": XXXXX,
-    "or_physique": XXXXX
-  }
+    "or_physique": XXXXX,
+    "bspce": XXXXX
+  },
+  "bspce_pv_latente_totale": XXXXX
 }
 ```
 

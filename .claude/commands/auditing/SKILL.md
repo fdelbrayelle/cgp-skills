@@ -158,6 +158,27 @@ Légende : `↑ Sur-pondéré` `↓ Sous-pondéré` `≈ Équilibré (±2%)`
     Fin blocage estimée : [date]  |  Exonération PV IR après 5 ans : [oui/non selon ancienneté]
 ```
 
+#### 3e. BSPCE *(si présents dans le patrimoine)*
+
+```
+🎯 BSPCE — [entreprise]
+  ⚠️ Actif ILLIQUIDE — valeur conditionnelle à un événement de liquidité (IPO, M&A)
+
+  Attribution : [date]  |  [nombre] BSPCE  |  Prix d'exercice : [X,XX] €/action
+  Vesting cliff : [N] mois  |  Vesting complet : [date]
+  Exercés : [oui/non]  |  Valeur action estimée : [X,XX] €/action
+
+  Plus-value latente estimée : +X XXX €
+  ([nombre_bspce] × ([valeur_action] − [prix_exercice]))
+
+  Fiscalité à la cession :
+  • Entreprise [< 3 ans / ≥ 3 ans] à l'attribution
+    → [PFU 30% / 17,2% PS uniquement — exonéré d'IR] ✅
+    → Impôt estimé si cession aujourd'hui : [X XXX €]
+
+  ⚠️ Risque de concentration : X% de la PV latente dépend d'une seule société privée
+```
+
 #### 3e. Crypto
 
 ```
@@ -286,6 +307,12 @@ Affiche :
 
 **Or + Crypto** → rappeler la déclaration annuelle 2086 (crypto) et formulaire 3916-bis (exchanges étrangers)
 
+**BSPCE** *(si présents)* :
+- Si entreprise ≥ 3 ans à l'attribution → rappeler l'avantage fiscal majeur (exonération IR, 17,2% PS seulement)
+- Si pas encore vestés → valeur patrimoniale nulle jusqu'au cliff ; surveiller la date
+- Si PV latente significative → alerter sur la concentration risque (une seule société privée = risque total)
+- Si événement de liquidité proche (IPO, M&A annoncé) → conseiller d'anticiper la déclaration et consulter un expert
+
 ---
 
 ### 5. Règle des 4% — Indépendance Financière
@@ -334,7 +361,7 @@ Calcule et affiche la part d'actifs illiquides :
 
   Actifs liquides (< 1 semaine)     : XX XXX €  (XX%)  — Livrets, crypto, PEA > 5 ans
   Actifs semi-liquides (< 3 mois)   : XX XXX €  (XX%)  — AV, PER, actions cotées
-  Actifs illiquides (> 1 an)        : XX XXX €  (XX%)  — Immobilier, SCPI NP, PE, or
+  Actifs illiquides (> 1 an)        : XX XXX €  (XX%)  — Immobilier, SCPI NP, PE, or, BSPCE
 
   Limite recommandée illiquidité : [20% Prudent / 30% Équilibré / 35% Dynamique]%
   Votre illiquidité actuelle     : XX.X%  [OK / ⚠️ Dépasse la limite recommandée]
