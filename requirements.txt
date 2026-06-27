@@ -1,0 +1,16 @@
+# CGP Skills — Dépendances Python
+# Seul cgp/export.py nécessite ces packages.
+# Les skills /initializing, /auditing, /updating, /rebalancing sont natifs Claude Code.
+
+# ── Obligatoire ──────────────────────────────────────────────────────────────
+rich>=13.7.0          # Affichage terminal enrichi (utilisé si run en mode standalone)
+
+# ── Export PDF (optionnel) ───────────────────────────────────────────────────
+# weasyprint>=62.0    # Décommentez pour activer /exporting --format pdf
+#                     # Dépendances système (Ubuntu/Debian) :
+#                     #   sudo apt-get install libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0
+
+# ── Export PNG (optionnel) ───────────────────────────────────────────────────
+# cairosvg>=2.7.1     # Décommentez pour activer /exporting --format png
+#                     # Dépendances système (Ubuntu/Debian) :
+#                     #   sudo apt-get install libcairo2 libcairo2-dev

@@ -1,0 +1,248 @@
+{
+  "profil_investisseur": {
+    "prenom_nom": "Jean Dupont",
+    "age": 34,
+    "profil_risque": "dynamique",
+    "horizon_annees": 20,
+    "situation_professionnelle": "salarié",
+    "situation_familiale": "célibataire",
+    "tranche_imposition_pourcent": 30,
+    "dca_mensuel_cible": 1500,
+    "depenses_mensuelles": 2800,
+    "objectif_revenu_mensuel_eur": 3500,
+    "pension_retraite_estimee_eur": 1800,
+    "date_mise_a_jour": "2026-06-27"
+  },
+  "allocation_cible": {
+    "immobilier":        26,
+    "actions_pea":       30,
+    "per":                8,
+    "assurance_vie":     10,
+    "scpi":               8,
+    "or_physique":        5,
+    "private_equity":     4,
+    "crypto":             7,
+    "livrets_liquidites": 2
+  },
+  "situation_actuelle": {
+    "liquidites": {
+      "livret_a": {
+        "montant": 22950,
+        "plafond": 22950,
+        "taux_pourcent": 2.5,
+        "note": "Plafond atteint"
+      },
+      "ldds": {
+        "montant": 5000,
+        "plafond": 12000,
+        "taux_pourcent": 2.5
+      },
+      "lep": {
+        "montant": 0,
+        "plafond": 10000,
+        "taux_pourcent": 3.5,
+        "eligible": false
+      },
+      "compte_courant": 3000
+    },
+    "pea": {
+      "broker": "Fortuneo",
+      "date_ouverture": "2020-04-12",
+      "valeur_actuelle": 42000,
+      "versements_cumules": 35000,
+      "plafond_versements": 150000,
+      "composition": "ETF World CW8 (70%), ETF Small Cap RS2K (20%), ETF Émergents AEEM (10%)"
+    },
+    "pea_pme": null,
+    "per": {
+      "type": "individuel",
+      "assureur": "Linxea Spirit 2",
+      "gestionnaire": "Spirica",
+      "valeur_actuelle": 15000,
+      "fonds_euros": 3000,
+      "uc": 12000,
+      "versements_annuels_prevus": 2000,
+      "deductibilite_max_annuelle": 4399
+    },
+    "assurance_vie": [
+      {
+        "nom": "Linxea Avenir 2",
+        "assureur": "Crédit Mutuel Suravenir",
+        "date_ouverture": "2018-03-10",
+        "fonds_euros": 8000,
+        "uc": 18000,
+        "valeur_totale": 26000,
+        "versements_cumules": 22000,
+        "note": "8 ans atteints en mars 2026 — abattement fiscal disponible"
+      }
+    ],
+    "cto": null,
+    "scpi": {
+      "pleine_propriete": {
+        "en_direct": {
+          "valeur_totale": 12000,
+          "loyers_mensuels_bruts_estimes": 65,
+          "reinvestissement_loyers": false,
+          "parts": [
+            {
+              "nom": "Corum Origin",
+              "nombre_parts": 8,
+              "prix_part_acquisition": 1135,
+              "valeur_part_actuelle": 1135,
+              "rendement_pourcent": 6.06,
+              "loyers_annuels_bruts_estimes": 548,
+              "delai_jouissance_mois": 5,
+              "date_premiere_part": "2022-06-01"
+            },
+            {
+              "nom": "Remake Live",
+              "nombre_parts": 5,
+              "prix_part_acquisition": 204,
+              "valeur_part_actuelle": 202,
+              "rendement_pourcent": 7.2,
+              "loyers_annuels_bruts_estimes": 147,
+              "delai_jouissance_mois": 4,
+              "date_premiere_part": "2023-02-15"
+            }
+          ]
+        },
+        "via_assurance_vie": {
+          "montant": 0,
+          "contrat": null,
+          "note": "Si SCPI en AV, la valeur est déjà incluse dans assurance_vie.valeur_totale — ne pas doubler compter"
+        }
+      },
+      "nue_propriete": {
+        "valeur_totale_np": 9000,
+        "parts": [
+          {
+            "nom": "Sofidy Select 1",
+            "nombre_parts": 10,
+            "prix_part_np_acquisition": 900,
+            "valeur_part_pleine_propriete_estimee": 1200,
+            "decote_np_pourcent": 25,
+            "date_achat_np": "2022-01-15",
+            "date_fin_usufruit": "2034-01-01",
+            "revenus": false,
+            "note": "Aucun loyer pendant l'usufruit. Récupère la pleine propriété (~12 000 €) en 2034 sans fiscalité sur la plus-value de reconstitution."
+          }
+        ]
+      }
+    },
+    "or_physique": {
+      "pieces": [
+        {
+          "type": "Napoléon 20F",
+          "nombre": 10,
+          "valeur_spot_unitaire_eur": 328,
+          "valeur_totale": 3280,
+          "prix_acquisition_moyen_unitaire": 295,
+          "date_premiere_acquisition": "2021-03-01",
+          "stockage": "coffre-fort domicile"
+        },
+        {
+          "type": "Souverain anglais",
+          "nombre": 5,
+          "valeur_spot_unitaire_eur": 445,
+          "valeur_totale": 2225,
+          "prix_acquisition_moyen_unitaire": 410,
+          "date_premiere_acquisition": "2022-06-15",
+          "stockage": "coffre-fort domicile"
+        }
+      ],
+      "lingots": [
+        {
+          "poids_grammes": 100,
+          "valeur_spot_eur": 8500,
+          "prix_acquisition_eur": 7800,
+          "date_acquisition": "2023-01-10",
+          "stockage": "établissement agréé LBMA"
+        }
+      ],
+      "valeur_totale_eur": 14005,
+      "note_fiscale": "Option A (défaut) : taxe forfaitaire 11,5% sur prix cession (10% taxe + 1,5% CRDS). Option B : 36,2% sur la plus-value réelle si conservation prouvée (abattement 5%/an dès la 3e année, exonération totale après 22 ans)."
+    },
+    "private_equity": {
+      "fcpi_fip": [
+        {
+          "nom": "Idinvest Digital Fund VI",
+          "gestionnaire": "Eurazeo Investment Manager",
+          "type": "FCPI",
+          "vintage": 2021,
+          "montant_souscrit": 5000,
+          "valeur_liquidative_estimee": 4850,
+          "reduction_impot_obtenue": 900,
+          "taux_reduction_pourcent": 18,
+          "date_souscription": "2021-12-15",
+          "date_fin_blocage_estimee": "2029-12-31",
+          "note": "Réduction IR 18% à l'entrée. Bloqué 5 ans minimum. Exonération PV après 5 ans (hors PS 17,2%)."
+        }
+      ],
+      "fonds_professionnels": [],
+      "club_deals": [],
+      "investissement_direct": [],
+      "valeur_totale_eur": 4850,
+      "note_fiscale": "FCPI/FIP : réduction IR 18-25% à la souscription. Exonération IR sur les plus-values après 5 ans de détention (prélèvements sociaux 17,2% restent dus). Actifs illiquides — valorisation au dernier bulletin de VL communiqué."
+    },
+    "crypto": {
+      "exchanges_wallets": ["Coinbase", "Ledger Nano X (cold wallet)", "Kraken"],
+      "positions": {
+        "BTC": {
+          "quantite": 0.15,
+          "valeur_eur": 11250,
+          "prix_moyen_acquisition_eur_par_unite": 58000,
+          "cout_acquisition_total_eur": 8700,
+          "plus_value_latente_eur": 2550,
+          "pourcent_portfolio_crypto": 52.2,
+          "stockage": "Ledger Nano X"
+        },
+        "ETH": {
+          "quantite": 2.5,
+          "valeur_eur": 5500,
+          "prix_moyen_acquisition_eur_par_unite": 1600,
+          "cout_acquisition_total_eur": 4000,
+          "plus_value_latente_eur": 1500,
+          "pourcent_portfolio_crypto": 25.5,
+          "stockage": "Coinbase"
+        },
+        "SOL": {
+          "quantite": 20,
+          "valeur_eur": 3200,
+          "prix_moyen_acquisition_eur_par_unite": 80,
+          "cout_acquisition_total_eur": 1600,
+          "plus_value_latente_eur": 1600,
+          "pourcent_portfolio_crypto": 14.9,
+          "stockage": "Ledger Nano X"
+        },
+        "autres": {
+          "valeur_eur": 1550,
+          "pourcent_portfolio_crypto": 7.2,
+          "detail": "Divers altcoins (Kraken)"
+        }
+      },
+      "defi_staking": [
+        {
+          "protocole": "Lido (stETH sur Ethereum)",
+          "valeur_eur": 1200,
+          "rendement_annuel_pourcent": 3.2,
+          "note": "Récompenses staking = revenus imposables à réception (régime BNC)"
+        }
+      ],
+      "valeur_totale_eur": 21500,
+      "note_fiscale": "PFU 30% (12,8% IR + 17,2% PS) sur plus-values lors de cessions vers monnaie fiat. Tenir un journal précis des acquisitions pour le calcul du prix de revient moyen pondéré."
+    },
+    "immobilier": {
+      "residence_principale": {
+        "adresse_indicative": "Paris 11e",
+        "valeur_brute": 320000,
+        "quote_part_pourcent": 50,
+        "capital_restant_du": 165000,
+        "mensualite_credit": 950,
+        "taux_credit_pourcent": 1.75,
+        "date_fin_credit": "2036-09",
+        "note": "Acquisition en indivision 50/50 avec concubin(e)"
+      },
+      "locatif": []
+    }
+  }
+}
