@@ -59,8 +59,8 @@ Explique la notion d'allocation cible et propose une allocation de départ basé
 
 ### Étape 3 — Liquidités
 
-- **Livret A** : montant (plafond 22 950 €, taux 2,5%)
-- **LDDS** : montant (plafond 12 000 €)
+- **Livret A** : montant (plafond 22 950 €, taux 1,5%)
+- **LDDS** : montant (plafond 12 000 €, taux 1,5%)
 - **LEP** (si éligible) : montant (plafond 10 000 €, taux 3,5%)
 - **Compte courant** : montant disponible moyen
 
