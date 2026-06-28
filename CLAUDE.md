@@ -93,6 +93,16 @@ situation_actuelle
     valeur_action_estimee_eur, plus_value_latente_estimee_eur
     age_entreprise_ans_a_attribution  ← clé fiscale : < 3 ans → PFU 30%, ≥ 3 ans → 17,2% PS seulement
 
+  diversification (null si jamais calculé — dérivé et mis à jour automatiquement par l'agent lors de l'audit)
+    source : "Claude Code"
+    date : date du dernier calcul
+    base_eur : montant total des actifs financiers analysés
+    zones_geographiques : { Europe, Amerique_du_Nord, Asie, Oceanie, Amerique_du_Sud, Afrique, Mondial } (%)
+    pays[] : { pays, pourcent }  ← top pays triés par % décroissant
+    secteurs : { Tech, Services_financiers, Sante, Industrie, Biens_non_essentiels, Communication,
+                 Biens_essentiels, Energie, Matieres_premieres, Services_publics, Immobilier } (%)
+    sensibilite_cyclique : { Cyclique, Sensible, Defensif } (%)
+
   immobilier
     residence_principale
       valeur_brute, quote_part_pourcent, capital_restant_du, mensualite_credit

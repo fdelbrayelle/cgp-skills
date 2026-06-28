@@ -260,6 +260,58 @@
         "age_entreprise_ans_a_attribution": 5,
         "note_fiscale": "Entreprise ≥ 3 ans à l'attribution → 17,2% PS uniquement sur le gain (exonération IR). Gain latent non imposable tant que les actions ne sont pas cédées."
       }
-    ]
+    ],
+    "diversification": {
+      "source": "Claude Code",
+      "date": "2026-06-28",
+      "base_eur": 104350,
+      "note": "Dérivé automatiquement depuis la composition des actifs financiers cotés (PEA, AV UC, SCPI, Crypto). Hors or physique, immobilier RP et private equity non côtés.",
+      "zones_geographiques": {
+        "Amerique_du_Nord": 52.3,
+        "Europe":           28.1,
+        "Asie":             10.4,
+        "Mondial":           6.2,
+        "Oceanie":           1.5,
+        "Amerique_du_Sud":   0.8,
+        "Afrique":           0.7
+      },
+      "pays": [
+        { "pays": "États-Unis",     "pourcent": 51.2 },
+        { "pays": "Japon",          "pourcent":  4.1 },
+        { "pays": "Royaume-Uni",    "pourcent":  2.7 },
+        { "pays": "Allemagne",      "pourcent":  2.5 },
+        { "pays": "France",         "pourcent":  2.3 },
+        { "pays": "Canada",         "pourcent":  2.1 },
+        { "pays": "Chine",          "pourcent":  2.0 },
+        { "pays": "Taïwan",         "pourcent":  1.9 },
+        { "pays": "Inde",           "pourcent":  1.7 },
+        { "pays": "Pays-Bas",       "pourcent":  1.5 },
+        { "pays": "Corée du Sud",   "pourcent":  1.4 },
+        { "pays": "Suisse",         "pourcent":  1.2 },
+        { "pays": "Australie",      "pourcent":  1.1 },
+        { "pays": "Espagne",        "pourcent":  0.9 },
+        { "pays": "Brésil",         "pourcent":  0.6 },
+        { "pays": "Autres",         "pourcent": 22.8 }
+      ],
+      "secteurs": {
+        "Tech":                  22.4,
+        "Services_financiers":   13.8,
+        "Sante":                 11.5,
+        "Industrie":             10.6,
+        "Biens_non_essentiels":   9.7,
+        "Communication":          7.9,
+        "Biens_essentiels":       5.8,
+        "Energie":                4.6,
+        "Immobilier":             4.1,
+        "Matieres_premieres":     3.8,
+        "Services_publics":       2.8,
+        "Crypto_actifs":          3.0
+      },
+      "sensibilite_cyclique": {
+        "Cyclique":  52.1,
+        "Sensible":  32.6,
+        "Defensif":  15.3
+      }
+    }
   }
 }

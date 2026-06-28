@@ -390,6 +390,170 @@ Conclure par 1–2 recommandations macro concrètes adaptées au régime détect
 
 ---
 
+#### 4g. Diversification géographique & sectorielle
+
+À partir de la description des actifs financiers dans `patrimoine.json` (`pea.composition`, `assurance_vie[].uc`, `cto`, `scpi`, etc.), **dérive** la répartition géographique et sectorielle en utilisant ta connaissance des indices de référence. Ne demande aucune donnée supplémentaire — raisonne uniquement depuis ce qui est dans le fichier.
+
+Après avoir calculé les pondérations, **mets à jour le champ `situation_actuelle.diversification`** dans `patrimoine.json` (outil Edit) avec les valeurs calculées : `source: "Claude Code"`, `date: [date du jour]`, `base_eur`, `zones_geographiques`, `pays` (top 15 minimum), `secteurs`, `sensibilite_cyclique`. Si le champ n'existe pas, l'ajouter avant la clé `immobilier`.
+
+##### Méthode de dérivation
+
+Pour chaque ligne d'actif financier, applique les pondérations ci-dessous selon les mots-clés reconnus, puis **agrège en pondérant par la valeur en € de chaque actif** :
+
+**ETF MSCI World (CW8, MWRD, IWDA, LCWD, WPEA, "World")**
+```
+Zones :     Amérique du Nord 70%, Europe 16%, Asie 10%, Océanie 2%, Autres 2%
+Pays top :  États-Unis 68%, Japon 6%, Royaume-Uni 4%, Allemagne 3%, France 3%, Canada 3%, Suisse 2%, Autres 11%
+Secteurs :  Tech 24%, Services fin. 14%, Santé 12%, Industrie 11%, Biens non-ess 10%, Comm. 8%, Biens ess. 6%, Énergie 5%, Matières 4%, Serv. pub. 3%, Immo 3%
+Cyclique :  Cyclique 45%, Sensible 40%, Défensif 15%
+```
+
+**ETF MSCI Emerging Markets (AEEM, PAEEM, CSPX, "Émergents", "EM")**
+```
+Zones :     Asie 76%, Amérique du Sud 7%, Afrique 5%, Moyen-Orient 4%, Autres 8%
+Pays top :  Chine 30%, Taïwan 17%, Inde 16%, Corée du Sud 12%, Brésil 5%, Arabie saoudite 4%, Afrique du Sud 3%, Autres 13%
+Secteurs :  Tech 23%, Services fin. 21%, Biens non-ess 15%, Industrie 6%, Énergie 5%, Matières 7%, Comm. 9%, Santé 4%, Autres 10%
+Cyclique :  Cyclique 55%, Sensible 35%, Défensif 10%
+```
+
+**ETF Russell 2000 Small Cap (RS2K, "Small Cap US", "Small Cap")**
+```
+Zones :     Amérique du Nord 100%
+Pays top :  États-Unis 100%
+Secteurs :  Industrie 16%, Services fin. 16%, Santé 15%, Tech 13%, Biens non-ess 14%, Énergie 6%, Matières 4%, Autres 16%
+Cyclique :  Cyclique 55%, Sensible 30%, Défensif 15%
+```
+
+**ETF S&P 500 / USA (SP500, SPY, "S&P", "États-Unis")**
+```
+Zones :     Amérique du Nord 100%
+Pays top :  États-Unis 100%
+Secteurs :  Tech 30%, Services fin. 13%, Santé 12%, Industrie 9%, Biens non-ess 10%, Comm. 9%, Énergie 4%, Matières 3%, Serv. pub. 3%, Biens ess. 6%, Immo 2%
+Cyclique :  Cyclique 50%, Sensible 38%, Défensif 12%
+```
+
+**SCPI pleine propriété ou nue-propriété**
+```
+Zones :     Europe 95–100% (selon SCPI), France selon SCPI
+Secteurs :  Immobilier 100%
+Cyclique :  Sensible 100%
+Pays top selon SCPI connue :
+  Corum Origin → Pays-Bas 30%, Espagne 20%, France 15%, Allemagne 10%, Autres EU 25%
+  Remake Live  → France 40%, Europe 60%
+  Sofidy / générique → France 50–70%, Europe 30–50%
+```
+
+**Crypto (BTC, ETH, SOL, altcoins)**
+```
+Zones :     Mondial (aucune exposition géographique classique — actif numérique)
+Secteurs :  Techno / Crypto 100%
+Cyclique :  Cyclique 100%
+```
+
+**Or physique** → hors scope géographique/sectoriel (actif réel mondial, matière première)
+
+**Private Equity / FCPI / FIP** → France ou Europe selon gestionnaire, secteur selon thèse d'investissement du fonds
+
+##### Agrégation pondérée
+
+Calcule la valeur totale des actifs financiers cotés (hors or, immo RP, cash) :
+```
+base_diversification = pea.valeur_actuelle + Σ av[i].uc + cto.valeur_actuelle + scpi.PP.valeur_totale + scpi.NP.valeur_totale_np + crypto.valeur_totale_eur
+```
+
+Pour chaque zone/pays/secteur : `poids = Σ (pondération_ETF[i] × valeur_actif[i]) / base_diversification`
+
+##### Affichage
+
+```
+🌍 DIVERSIFICATION GÉOGRAPHIQUE (estimée — actifs financiers, hors or et immo RP)
+   Base d'analyse : [base_diversification €]
+
+Zone                │  %      │  Barre (24 chars max)
+────────────────────┼─────────┼────────────────────────────
+Europe              │  XX,X%  │ ████████████████████████
+Amérique du Nord    │  XX,X%  │ ████████████████████████
+Asie                │  XX,X%  │ ██████████████
+Océanie             │   X,X%  │ ██
+Amérique du Sud     │   X,X%  │ █
+Afrique             │   X,X%  │ █
+Mondial / Crypto    │   X,X%  │ █
+
+Référence MSCI World : Am. Nord 70% | Europe 16% | Asie 10% | Océanie 2%
+```
+
+```
+🗺️ TOP PAYS (exposition estimée sur actifs financiers)
+
+ 1. 🇺🇸 États-Unis        XX,X%  ████████████████
+ 2. 🇯🇵 Japon              X,X%  ████
+ 3. 🇬🇧 Royaume-Uni        X,X%  ███
+ 4. 🇩🇪 Allemagne          X,X%  ███
+ 5. 🇫🇷 France             X,X%  ██
+ 6. 🇨🇳 Chine              X,X%  ██
+ 7. 🇹🇼 Taïwan             X,X%  █
+ 8. 🇰🇷 Corée du Sud       X,X%  █
+ 9. 🇮🇳 Inde               X,X%  █
+10. 🇨🇦 Canada             X,X%  █
+    Autres (XX pays)        X,X%
+```
+
+```
+🏭 DIVERSIFICATION SECTORIELLE
+
+Secteur               │   %    │  Barre (24 chars)       │ Cyclicité
+──────────────────────┼────────┼─────────────────────────┼──────────────
+Tech                  │  XX,X% │ ████████████████████████│ Cyclique
+Services financiers   │  XX,X% │ ████████████████        │ Cyclique
+Santé                 │  XX,X% │ ████████                │ Défensif
+Industrie             │  XX,X% │ ███████                 │ Cyclique
+Biens non-essentiels  │  XX,X% │ ███████                 │ Cyclique
+Communication         │   X,X% │ █████                   │ Sensible
+Biens essentiels      │   X,X% │ ████                    │ Défensif
+Énergie               │   X,X% │ ███                     │ Sensible
+Matières premières    │   X,X% │ ██                      │ Cyclique
+Services publics      │   X,X% │ ██                      │ Défensif
+Immobilier            │   X,X% │ ██                      │ Sensible
+
+Référence MSCI World : Tech 24% | Fin. 14% | Santé 12% | Industrie 11%
+```
+
+```
+⚡ SENSIBILITÉ CYCLIQUE (actifs financiers)
+
+Cyclique   XX,X%  ████████████████████████
+Sensible   XX,X%  ████████████████████
+Défensif    X,X%  ████████
+
+Référence équilibrée : Cyclique 40–50% | Sensible 30–35% | Défensif 15–25%
+```
+
+##### Analyse & recommandations (Evidence-Based Investing)
+
+Évalue les 4 axes suivants en te basant sur les principes de la finance factorielle et de l'investissement indiciel passif :
+
+**1. Concentration géographique**
+- Si États-Unis > 60% → ⚠️ surexposition au risque réglementaire et de valorisation US (CAPE Shiller élevé). Envisager d'accroître les marchés développés hors US (Europe) ou émergents.
+- Si marchés émergents (Asie hors JP/AU, Amérique du Sud, Afrique) < 10% → signaler le manque d'exposition à la croissance long terme (pays représentant 60%+ du PIB mondial futur selon le FMI)
+- Si Europe > 40% → noter que la prime de croissance est historiquement inférieure aux US sur longue période (biais domestique à surveiller)
+
+**2. Diversification sectorielle**
+- Si Tech > 30% → ⚠️ concentration secteur à haute valorisation (ratio P/E élevé, sensibilité aux taux) ; recommander de rééquilibrer vers Santé ou Biens essentiels
+- Si Défensif (Santé + Biens ess. + Serv. pub.) < 10% → ⚠️ portefeuille très vulnérable en phase de récession ; la recherche académique (Böni & Kröncke, *The Evidence-Based Investor*) montre que les secteurs défensifs lissent la volatilité sans sacrifier le rendement long terme
+- Si Immobilier > 30% (via SCPI) → noter la double exposition immobilière avec la RP ; cohérent si profil cherche revenus, mais risque de corrélation
+
+**3. Facteurs de risque (finance factorielle)**
+- **Prime de taille** (small cap) : si RS2K ou équivalent dans le portfolio → ✅ exposition au facteur Size, documentée comme source de surperformance long terme
+- **Prime de valeur** (value) : signaler si le portfolio est quasi-exclusivement croissance/tech → suggérer d'ajouter un ETF Value pour capturer la prime Value (Fama-French)
+- **Marchés émergents** : exposés au facteur EM premium (rendement supérieur historique compensant le risque supplémentaire) → cohérent avec profil dynamique/offensif
+
+**4. Cohérence avec le profil**
+- Profil **Offensif/Dynamique** : Cyclique élevé (> 50%) est cohérent ; vérifier que l'horizon (> 15 ans) justifie l'exposition
+- Profil **Équilibré** : Défensif doit être ≥ 15% ; si insuffisant → suggérer d'arbitrer une partie des ETF World vers un ETF Santé ou Minimum Volatility
+- Profil **Prudent** : si Cyclique > 40% → décalage fort avec le profil → action prioritaire
+
+---
+
 ### 5. Règle des 4% — Indépendance Financière
 
 Applique la Safe Withdrawal Rate (SWR) sur le patrimoine NET :
