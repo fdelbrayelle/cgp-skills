@@ -7,6 +7,10 @@
           {
             "type": "command",
             "command": "python3 cgp/snapshot.py --auto 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "command": "bash /home/francois/dev/fdelbrayelle/cgp-skills/cgp/backup_patrimoine.sh 2>/dev/null || true"
           }
         ]
       }

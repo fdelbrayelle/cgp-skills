@@ -304,6 +304,65 @@ cgp-skills/
 
 ---
 
+## 🔐 Sauvegarde chiffrée automatique
+
+`patrimoine.json` et les snapshots mensuels sont sauvegardés automatiquement dans un **repo GitHub privé**, chiffrés avec [age](https://age-encryption.org/) avant d'être envoyés. Sans la clé privée, le contenu est illisible.
+
+### Installation de age
+
+**Ubuntu/Debian :**
+```bash
+sudo apt install age
+```
+
+**macOS :**
+```bash
+brew install age
+```
+
+### Setup initial (une seule fois)
+
+```bash
+# 1. Générer une clé age
+mkdir -p ~/.age && age-keygen -o ~/.age/key.txt
+# → Sauvegarder ~/.age/key.txt dans un gestionnaire de mots de passe (Bitwarden, 1Password…)
+
+# 2. Créer le repo de backup privé
+gh repo create patrimoine-backup --private
+git clone git@github.com:<votre-compte>/patrimoine-backup.git ~/patrimoine-backup
+
+# 3. Activer le hook dans Claude Code (déjà configuré dans .claude/settings.json)
+# → La sauvegarde se déclenche automatiquement après chaque modification de patrimoine.json
+```
+
+### Ce qui est sauvegardé
+
+```
+~/patrimoine-backup/
+├── patrimoine.json.age      ← état actuel (chiffré)
+└── history/
+    ├── 2026-01.json.age     ← snapshots mensuels (chiffrés)
+    └── …
+```
+
+### Restaurer sur une nouvelle machine
+
+```bash
+# 1. Installer age et restaurer ~/.age/key.txt (depuis votre gestionnaire de mots de passe)
+# 2. Cloner le repo de backup
+git clone git@github.com:<votre-compte>/patrimoine-backup.git ~/patrimoine-backup
+# 3. Lancer le script de restauration
+bash cgp/restore_patrimoine.sh
+```
+
+### Déchiffrer manuellement
+
+```bash
+age --decrypt -i ~/.age/key.txt patrimoine.json.age > patrimoine.json
+```
+
+---
+
 ## 📦 Export de rapports
 
 HTML natif (aucune dépendance supplémentaire) :
