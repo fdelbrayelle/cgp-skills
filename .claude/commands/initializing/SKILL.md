@@ -74,7 +74,8 @@ Explique : exonération totale d'IR après 5 ans. L'ancienneté commence dès l'
 - Date d'ouverture (AAAA-MM-JJ)
 - Valeur actuelle + versements cumulés
 - Composition succincte (ex : "ETF World 70%, Small Cap 20%, Émergents 10%")
-- **PEA-PME** : broker, valeur actuelle
+- **DCA mensuel programmé** : *"Combien versez-vous chaque mois sur votre PEA ? (0 ou 'aucun' si variable)"* → `versement_mensuel_programme`
+- **PEA-PME** : broker, valeur actuelle, DCA mensuel programmé
 
 Si pas de PEA → conseiller fortement d'en ouvrir un immédiatement.
 
@@ -88,6 +89,7 @@ Explique : déduction fiscale des versements (= économie d'impôt immédiate à
 - Assureur / gestionnaire (Linxea Spirit 2, Yomoni, Meilleurtaux Placement, Garance, etc.)
 - Valeur actuelle totale / dont fonds euros / dont UC
 - Versements annuels prévus + plafond de déductibilité
+- **DCA mensuel programmé** : *"Combien versez-vous chaque mois sur votre PER ? (0 ou 'aucun' si variable)"* → `versement_mensuel_programme`
 
 ---
 
@@ -98,6 +100,7 @@ Explique : enveloppe la plus flexible. Abattement fiscal sur gains après 8 ans 
 Pour chaque contrat :
 - Nom + assureur + date d'ouverture
 - Montant fonds euros / UC / valeur totale / versements cumulés
+- **DCA mensuel programmé** : *"Combien versez-vous chaque mois sur ce contrat ? (0 ou 'aucun' si variable)"* → `versement_mensuel_programme`
 
 ⚠️ Demander si des SCPI sont logées dans l'AV : leur valeur sera incluse dans la valeur totale de l'AV et ne sera PAS recomptée dans la rubrique SCPI.
 
@@ -123,6 +126,7 @@ Explique les deux régimes fondamentaux :
 - Loyers annuels bruts estimés
 - **Réinvestissement des loyers activé** ? (oui/non — certaines SCPI proposent ce programme)
 - Date de première acquisition
+- **DCA mensuel programmé** (global sur toutes les SCPI PP en direct) : *"Accumulez-vous un montant fixe chaque mois pour acheter des parts ? (0 ou 'aucun' si achat ponctuel)"* → `versement_mensuel_programme` sur `scpi.pleine_propriete.en_direct`
 
 **SCPI PP via Assurance Vie** :
 - Montant + contrat AV hébergeant → rappeler que déjà inclus dans la valeur AV (ne pas doubler)
@@ -192,6 +196,7 @@ Pour chaque crypto significative (BTC, ETH, SOL, etc.) :
 - Protocole, valeur actuelle, rendement annuel estimé
 
 - **Valeur totale en euros** au cours actuel
+- **DCA mensuel programmé** : *"Investissez-vous un montant fixe chaque mois en crypto ? (0 ou 'aucun' si achat ponctuel)"* → `versement_mensuel_programme`
 - **Exchanges étrangers** → rappeler l'obligation de déclarer (formulaire 3916-bis en France)
 
 ---

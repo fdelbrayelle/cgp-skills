@@ -11,7 +11,11 @@ Lis `data/patrimoine.json` (outil Read), calcule les drifts et détermine commen
 3. **Classes DCA-compatibles uniquement** (rappel CLAUDE.md) :
    - ✅ Éligibles DCA : `actions_pea`, `per`, `assurance_vie`, `scpi` (PP en direct), `crypto`, `livrets_liquidites`
    - ❌ Non-DCA : `immobilier` (pas achetable mensuellement), `scpi nue_propriete` (achat ponctuel), `or_physique` (achat ponctuel), `private_equity` (souscription annuelle), `bspce` (illiquides, pas de flux mensuel possible)
-4. **Allocation DCA** = proportionnelle aux drifts négatifs des classes éligibles uniquement
+4. **DCA programmés** : lire `versement_mensuel_programme` sur chaque enveloppe (pea, per, chaque contrat AV, scpi.pleine_propriete.en_direct, crypto). Sommer les non-null → `total_programme`.
+5. **Allocation DCA** :
+   - Si `total_programme > 0` : les montants programmés sont affichés en priorité (colonne "Programmé") ; le solde `dca_mensuel_cible − total_programme` est distribué proportionnellement aux drifts négatifs des classes éligibles sans montant programmé (colonne "Drift")
+   - Si `total_programme = 0` : allocation 100% proportionnelle aux drifts négatifs (comportement historique)
+   - Si `total_programme > dca_mensuel_cible` → afficher alerte rouge ⛔
 
 ---
 
@@ -68,26 +72,31 @@ Livrets & Liquidités     │   X.X% │   X%  │   +X.X% ↑  │     ✅     
 
 ```
 💶 ALLOCATION DU DCA — X XXX €/mois
+   Programmé : X XXX € · Solde drift : XXX €
 
-Classe                   │ Montant  │ % du DCA │ Barre
-─────────────────────────────────────────────────────────────────────
-Actions / PEA            │  X XXX € │   XX%    │ ██████████████░░░░░░░░
-Épargne Retraite (PER)   │    XXX € │   XX%    │ █████░░░░░░░░░░░░░░░░░
-SCPI (PP en direct)      │    XXX € │   XX%    │ ███░░░░░░░░░░░░░░░░░░░
-─────────────────────────────────────────────────────────────────────
-TOTAL                    │  X XXX € │  100%
+Classe                   │ Programmé │  Drift  │  TOTAL   │ Barre
+──────────────────────────────────────────────────────────────────────
+Actions / PEA            │   800 €   │   —     │   800 €  │ ██████████████░░░░
+Épargne Retraite (PER)   │   200 €   │   —     │   200 €  │ ████░░░░░░░░░░░░░░
+Assurance Vie            │   300 €   │  200 €  │   500 €  │ ████████░░░░░░░░░░
+SCPI (PP en direct)      │    —      │    —    │    —     │ (accumulation)
+──────────────────────────────────────────────────────────────────────
+TOTAL                    │ X XXX €   │  XXX €  │ X XXX €
 ```
+
+> Si `versement_mensuel_programme` est null pour une classe DCA-compatible sous-pondérée, le solde drift lui est alloué normalement.
+> Si toutes les enveloppes ont un montant programmé et que le solde drift est nul, afficher le tableau sans la colonne Drift.
 
 ### Conseils pratiques par enveloppe
 
 **Actions / PEA — [broker]**
-> Versez X XXX € sur votre PEA [broker].
+> Versez X XXX € sur votre PEA [broker] (dont XXX € programmés + XXX € drift).
 > Marge disponible : XX XXX € / 150 000 €.
 > Suggestion ETF : MSCI World (CW8, IWDA), ou Nasdaq (PANX) selon profil.
 > Si PEA saturé → déborder sur CTO ou PEA-PME (plafond cumulé 225 000 €).
 
 **PER — [assureur]**
-> Versez XXX € sur votre PER [assureur].
+> Versez XXX € sur votre PER [assureur] (dont XXX € programmés + XXX € drift).
 > Économie d'impôt générée : XXX € (TMI [X]% × montant).
 > Plafond déductible restant cette année : X XXX €.
 
@@ -96,8 +105,8 @@ TOTAL                    │  X XXX € │  100%
 > Si montant insuffisant → accumuler sur le mois et acheter une part le mois prochain.
 > Réinvestissement des loyers activé : vérifier si les loyers perçus ce mois couvrent une part.
 
-**Assurance Vie**
-> Versez XXX € sur [nom contrat]. Préférer UC si horizon > 5 ans.
+**Assurance Vie — [nom contrat]**
+> Versez XXX € sur [nom contrat] (dont XXX € programmés + XXX € drift). Préférer UC si horizon > 5 ans.
 
 ### Alertes spéciales
 

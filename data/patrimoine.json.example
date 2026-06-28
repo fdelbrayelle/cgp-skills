@@ -52,7 +52,8 @@
       "valeur_actuelle": 42000,
       "versements_cumules": 35000,
       "plafond_versements": 150000,
-      "composition": "ETF World CW8 (70%), ETF Small Cap RS2K (20%), ETF Émergents AEEM (10%)"
+      "composition": "ETF World CW8 (70%), ETF Small Cap RS2K (20%), ETF Émergents AEEM (10%)",
+      "versement_mensuel_programme": 800
     },
     "pea_pme": null,
     "per": {
@@ -63,7 +64,8 @@
       "fonds_euros": 3000,
       "uc": 12000,
       "versements_annuels_prevus": 2000,
-      "deductibilite_max_annuelle": 4399
+      "deductibilite_max_annuelle": 4399,
+      "versement_mensuel_programme": 200
     },
     "assurance_vie": [
       {
@@ -74,6 +76,7 @@
         "uc": 18000,
         "valeur_totale": 26000,
         "versements_cumules": 22000,
+        "versement_mensuel_programme": 300,
         "note": "8 ans atteints en mars 2026 — abattement fiscal disponible"
       }
     ],
@@ -84,6 +87,7 @@
           "valeur_totale": 12000,
           "loyers_mensuels_bruts_estimes": 65,
           "reinvestissement_loyers": false,
+          "versement_mensuel_programme": null,
           "parts": [
             {
               "nom": "Corum Origin",
@@ -229,6 +233,7 @@
           "note": "Récompenses staking = revenus imposables à réception (régime BNC)"
         }
       ],
+      "versement_mensuel_programme": null,
       "valeur_totale_eur": 21500,
       "note_fiscale": "PFU 30% (12,8% IR + 17,2% PS) sur plus-values lors de cessions vers monnaie fiat. Tenir un journal précis des acquisitions pour le calcul du prix de revient moyen pondéré."
     },
