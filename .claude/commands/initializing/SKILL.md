@@ -246,4 +246,5 @@ Termine par un **résumé patrimonial bref** :
 - Réserve de précaution cible selon profil et dépenses mensuelles
 - Objectif FIRE estimé (règle des 4%) si objectif_revenu_mensuel défini
 - 2–3 points fiscaux clés détectés (ex : "PEA ouvert en 2020 → bientôt exonéré", "TMI 30% → PER très avantageux")
+- Suggestion d'exécuter `/rebalancing:SKILL` pour calculer l'allocation DCA de ce mois
 - Suggestion d'exécuter `/auditing:SKILL` pour l'analyse complète
