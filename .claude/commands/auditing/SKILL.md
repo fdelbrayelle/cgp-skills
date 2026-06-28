@@ -315,6 +315,81 @@ Affiche :
 
 ---
 
+#### 4f. Cadran macro-économique — Régime de marché
+
+Utilise **WebSearch** pour obtenir les données macro les plus récentes (< 30 jours) :
+- Cherche "inflation IPC France zone euro [mois année courante]"
+- Cherche "croissance PIB France zone euro [trimestre année courante] prévision"
+- Cherche "BCE taux directeur [année courante]" pour le contexte monétaire
+
+Identifie :
+- **Inflation** (IPC glissant 12 mois, zone euro ou France) → seuil : élevée si > 2,5%, modérée 1–2,5%, basse < 1%
+- **Croissance PIB** (dernier trimestre annualisé ou prévision BCE/FMI) → seuil : expansion > 1%, stagnation 0–1%, contraction < 0%
+- **Tendance** de chaque indicateur (hausse / baisse / stable)
+
+Affiche la matrice 2×2 :
+
+```
+🌐 CADRAN MACRO-ÉCONOMIQUE — RÉGIME DE MARCHÉ
+
+                     │   CROISSANCE POSITIVE (+)        │   CROISSANCE NÉGATIVE (−)
+─────────────────────┼──────────────────────────────────┼─────────────────────────────
+ INFLATION ÉLEVÉE (+)│  🔥 INFLATIONARY BOOM            │  🌡️ STAGFLATION
+                     │  Actifs réels (immo, or, SCPI),  │  Or, liquidités courtes,
+                     │  matières premières. Actions     │  SCPI indexées. Éviter
+                     │  cycliques. Éviter obligations.  │  actions & obligations.
+─────────────────────┼──────────────────────────────────┼─────────────────────────────
+ INFLATION BASSE (−) │  🚀 DISINFLATIONARY BOOM         │  🧊 DEFLATIONARY BUST
+                     │  Actions, PEA, PE, crypto,       │  Obligations long terme,
+                     │  UC assurance vie, PER UC.       │  fonds euros AV, livrets.
+                     │  Meilleur régime pour l'equity.  │  Éviter PE, immo, crypto.
+```
+
+```
+📍 RÉGIME ACTUEL — [mois/année des données]
+  Inflation (IPC 12 mois, zone euro) : X,X%  [Élevée / Modérée / Basse]
+  Croissance PIB (annualisée)        : X,X%  [Expansion / Stagnation / Contraction]
+  Taux directeur BCE                 : X,XX%
+  Tendance inflation                 : [↗ en hausse / → stable / ↘ en baisse]
+  Tendance croissance                : [↗ / → / ↘]
+
+  → Régime identifié : [🔥 Inflationary Boom / 🚀 Disinflationary Boom / 🌡️ Stagflation / 🧊 Deflationary Bust]
+  → Glissement probable : [ex. "inflation en baisse → possible transition vers Disinflationary Boom"]
+
+  Sources : [BCE / INSEE / Eurostat — date de référence des données]
+```
+
+Puis analyse l'impact sur les classes d'actif du portefeuille de l'utilisateur selon le régime détecté :
+
+| Régime               | ✅ Favorisé                              | ⚠️ Neutre / mixte           | ❌ Pénalisé                        |
+|----------------------|------------------------------------------|-----------------------------|------------------------------------|
+| Inflationary Boom    | Immo, SCPI PP, or, actions cycliques     | Crypto, liquidités          | Obligations, fonds euros           |
+| Disinflationary Boom | Actions PEA, PE, crypto, UC AV/PER       | SCPI, immo                  | Liquidités, or (opportunité coût)  |
+| Stagflation          | Or, liquidités courtes, SCPI indexées    | Immo (selon endettement)    | Actions, PE, crypto, obligations   |
+| Deflationary Bust    | Fonds euros AV, livrets, OAT long terme  | Immo défensif               | Actions, PE, crypto, SCPI, or      |
+
+```
+📊 IMPACT SUR VOTRE PORTEFEUILLE (régime : [nom du régime])
+
+Classe d'actif         │ Poids actuel │ Signal régime    │ Note
+───────────────────────┼──────────────┼──────────────────┼──────────────────────────────
+Immobilier             │  XX,X%       │ [✅ / ⚠️ / ❌]   │ [commentaire bref]
+Actions / PEA          │  XX,X%       │ [✅ / ⚠️ / ❌]   │
+Or physique            │   X,X%       │ [✅ / ⚠️ / ❌]   │
+SCPI                   │   X,X%       │ [✅ / ⚠️ / ❌]   │
+Private Equity         │   X,X%       │ [✅ / ⚠️ / ❌]   │
+Crypto                 │   X,X%       │ [✅ / ⚠️ / ❌]   │
+Liquidités / livrets   │   X,X%       │ [✅ / ⚠️ / ❌]   │
+```
+
+Conclure par 1–2 recommandations macro concrètes adaptées au régime détecté. Exemples :
+- **Stagflation** : "Votre poche or (X%) est un bouclier pertinent dans ce régime. Limiter les nouveaux versements actions ; privilégier fonds euros ou SCPI indexées. Le DCA vers le PEA reste pertinent sur la durée mais attendez un signal de reprise."
+- **Disinflationary Boom** : "Le régime actuel est idéal pour votre PEA. Continuer à abonder les ETF World et UC ; les livrets sous-performent en termes réels — n'y laissez que la réserve de précaution."
+- **Inflationary Boom** : "Vos actifs réels (immo + SCPI + or) sont bien positionnés. Méfiez-vous du fonds euros dont le rendement réel devient négatif. Envisager de renforcer les SCPI PP si TMI le permet."
+- **Deflationary Bust** : "Préserver le capital est la priorité. Renforcer le fonds euros de l'AV et les livrets. Réduire l'exposition crypto et PE si possible."
+
+---
+
 ### 5. Règle des 4% — Indépendance Financière
 
 Applique la Safe Withdrawal Rate (SWR) sur le patrimoine NET :

@@ -27,6 +27,24 @@ Lis `data/patrimoine.json` (outil Read), calcule les drifts et détermine commen
 ════════════════════════════════════════════════════════════
 ```
 
+### Contexte macro-économique
+
+Utilise **WebSearch** pour identifier le régime macro actuel (< 30 jours) : inflation IPC zone euro + croissance PIB France/zone euro. Positionne en une ligne dans l'en-tête du rapport :
+
+```
+🌐 RÉGIME MACRO : [🔥 Inflationary Boom | 🚀 Disinflationary Boom | 🌡️ Stagflation | 🧊 Deflationary Bust]
+   Inflation : X,X% (zone euro) │ PIB : X,X% │ Source : [BCE/Eurostat, mois année]
+   → [1 phrase d'impact sur l'allocation DCA de ce mois — ex. "Régime favorable aux actions, prioriser PEA"]
+```
+
+Ce contexte oriente les commentaires par enveloppe ci-dessous :
+- **Disinflationary Boom** → renforcer actions PEA / UC / PE ; limiter excès de liquidités
+- **Inflationary Boom** → favoriser SCPI PP, or ponctuel, immobilier ; fonds euros sous-performe
+- **Stagflation** → prudence actions, or et liquidités courtes en refuge ; DCA actions maintenu sur long terme
+- **Deflationary Bust** → fonds euros et livrets en priorité ; limiter PE et crypto
+
+---
+
 ### Tableau des drifts
 
 ```
